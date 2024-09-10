@@ -1,0 +1,12 @@
+on: push
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Notify backend about new locations.json
+      uses: fjogeleit/http-request-action@v1
+      with:
+        url: 'https://clever.nemt.link/api/new-locations'
+        method: 'POST'
+        customHeaders: '{"Content-Type": "application/json"}'
+        data: '{"key_1": "value_1", "key_2": "value_2"}'
